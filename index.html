@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️Test More❤️</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            text-align: center;
+            margin: 50px;
+            background-image: url('img/imagen3.jpeg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        .content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+        .questions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+        
+        .sentence {
+            margin: 15px 0;
+            display: grid;
+            grid-template-columns: 1fr 200px 30px;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+        }
+        .inputBox {
+            width: 200px;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+        .status {
+            margin-left: 10px;
+            font-size: 20px;
+        }
+        #checkAnswers {
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #862222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #checkAnswers:hover {
+            background-color: #0056b3;
+        }
+        #winMessage {
+            font-size: 24px;
+            color: lightgreen;
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        #justy{
+            text-align: justify;
+        }
+        #centertext{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="questions">
+        <h1>❤️MorTest❤️</h1>
+        <p>❤️Mi amor el día de hoy tendrás que completar este test, ten en cuenta que solo admite minusculas (Disfrutalo)❤️</p>
+
+        <div class="sentence">
+            <span>❤️Fecha de nuestro último beso:❤️</span>
+            <input type="text" class="inputBox" id="input1" placeholder="18 de julio 2023"><span id="status1" class="status"></span>
+        </div>
+
+        <div class="sentence">
+            <span> 🎼¿Cuál es mi instrumento musical favorito?:🎼</span>
+            <input type="text" class="inputBox" id="input2" placeholder="..."><span id="status2" class="status"></span>
+        </div>
+
+        <div class="sentence">
+            <span> 🤔¿Qué canción no puede faltar cuando cantamos juntos?: 🤔</span>
+            <input type="text" class="inputBox" id="input3" placeholder="..."><span id="status3" class="status"></span>
+        </div>
+
+        <div class="sentence">
+            <span>🤔❤️¿Cuál es mi película favorita?:❤️🤔</span>
+            <input type="text" class="inputBox" id="input4" placeholder="..."><span id="status4" class="status"></span>
+        </div>
+
+        <button id="checkAnswers">❤️Enviar❤️</button>
+    </div>
+
+    <div id="winMessage" style="display:none;">🎉 ¡Felicidades mi amor! Respondiste todo correctamente. Loviu 🎉</div>
+
+    <div class="content" style="display:none;">
+        <h1 id="centertext">❤️Bienvenida al día -3 y -2 Negrita❤️</h1>
+        <p id="justy"> El dia -3 no salió como esperabamos amor. pero nunca será tarde para recordarte lo mucho que me gustas y te lo recuerdo hoy el dia -2, abran días que 
+        no tendremos tiempo de compartir juntos, pero en nuestras mentes y nuestros corazones siempre estará presente lo nuestro.
+        aveces la distancia duele, pero de allí tambien surge la esperanza y el anhelo de ❤️Estar juntos❤️.</p>
+
+       <p id="centertext">❤️Aunque al reencontrarnos me toque como en mi pelicula favorita ❤️COMO SI FUERA LA PRIMERA VEZ❤️</p>
+
+        <p id="centertext">❤️Te amo desde el día 1❤️ & ❤️te sigo amando el dia -3 ❤️&❤️ mas aun el dia -2❤️</p>
+
+        <p id="centertext">❤️DIA -3 y -2 ❤️</p>
+
+        <p id="centertext">❤️FELIZ DIA MI AMOR❤️</p>
+    </div>
+
+    <script>
+        const checkAnswers = document.getElementById('checkAnswers');
+        const winMessage = document.getElementById('winMessage');
+        const questions = document.querySelector('.questions');
+        const content = document.querySelector('.content');
+
+        checkAnswers.addEventListener('click', () => {
+            const answers = {
+                input1: "9 de diciembre 2024",
+                input2: "guitarra",
+                input3: "mi novia querida",
+                input4: "como si fuera la primera vez"
+            };
+
+            let allCorrect = true;
+
+            for (let key in answers) {
+                const input = document.getElementById(key);
+                const status = document.getElementById(`status${key.slice(-1)}`);
+                if (input.value.trim().toLowerCase() !== answers[key].toLowerCase()) {
+                    input.style.borderColor = "red";
+                    status.textContent = "❌";
+                    status.style.color = "red";
+                    allCorrect = false;
+                } else {
+                    input.style.borderColor = "green";
+                    status.textContent = "✔️";
+                    status.style.color = "green";
+                }
+            }
+
+            if (allCorrect) {
+                // Show the "winMessage"
+                winMessage.style.display = 'block';
+                // Hide the questions and show the content after 2 seconds
+                setTimeout(() => {
+                    questions.style.display = 'none'; 
+                    winMessage.style.display = 'none'; // Hide questions
+                    content.style.display = 'block';   // Show content
+                }, 2000); // Wait 2 seconds before changing content
+            } else {
+                winMessage.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
